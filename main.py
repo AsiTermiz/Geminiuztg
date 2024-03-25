@@ -236,19 +236,7 @@ async def main():
 
     @bot.message_handler(commands=["help"])
     async def help_command(message: Message):
-    help_text = """
-    ℹ️ *Gemini haqida qo'llanma* ℹ️
-
-    • /start - Botni boshlash uchun bosing.
-    • /profile - Hisobingizni ko'ring.
-    • /additional - Qo'shimcha.
-    • /admin - Adminga bog'lanish.
-    • /gemini - Gemini bilan har joyda ishlang.
-    • /help - Yordam buyrug'i.
-    • /clear - Chat tarixini tozalash.
-
-    Boshqa ma'lumotlar uchun /admin ga bog'laning.
-    """
+    help_text = "• /start - Botni boshlash uchun bosing.\n• /profile - Hisobingizni ko'ring.\n• /additional - Qo'shimcha.\n• /admin - Adminga bog'lanish.\n• /gemini - Gemini bilan har joyda ishlang.\n• /help - Yordam buyrug'i.\n• /clear - Chat tarixini tozalash.\n\nBoshqa ma'lumotlar uchun /admin ga bog'laning."
     await bot.reply_to(message, help_text, parse_mode="MarkdownV2")
 
     
