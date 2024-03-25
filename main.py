@@ -8,7 +8,6 @@ from telebot.async_telebot import AsyncTeleBot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 from telebot.types import  Message
 
-
 admin_url = "https://t.me/itstimebeyond"
 site_url = "https://asicloud.uz"
 tgchannel_url = "https://t.me/storiescreation"
@@ -186,8 +185,9 @@ async def main():
             telebot.types.BotCommand("start", "🚀Boshlash"),
             telebot.types.BotCommand("profile", "💎Hisobim"),
             telebot.types.BotCommand("additional", "🌐Qo'shimcha"),
+            telebot.types.BotCommand("admin", "📶Admin"),
             telebot.types.BotCommand("gemini", "👥Bu buyruq faqat guruhlar uchun!"),
-            
+            telebot.types.BotCommand("help", "🆘Yordam"),
             telebot.types.BotCommand("clear", "🧹Tarixni tozalash")
         ],
     )
@@ -200,6 +200,44 @@ async def main():
             await bot.reply_to( message , escape("Salom Gemini botimga hush kelibsiz!. Bot Google Gemini AI tomonidan qo'llab quvvatlanadi\nSavolingizni berishingiz mumkin"), parse_mode="MarkdownV2")
         except IndexError:
             await bot.reply_to(message, error_info)
+            
+    @bot.message_handler(commands=["help"])
+    async def help_command(message: Message):
+     help_text = " *Gemini qo'llanma* ℹ️\n• /start -Boshlash.\n• /profile - Hisobingiz.\n• /additional - Qo'shimcha.\n• /admin - Adminga bog'lanish.\n• /gemini - Gemini bilan har joyda ishlang.\n• /help - Yordam.\n• /clear - Tarixni tozalash."
+     await bot.reply_to(message, help_text, parse_mode="MarkdownV2")
+     
+    @bot.message_handler(commands=["admin"])
+    async def admin_command(message: Message):
+    # Create inline keyboard
+      keyboard = InlineKeyboardMarkup()
+      keyboard.add(InlineKeyboardButton("Adminga yozish", url=admin_url))
+    
+    # Send message with inline keyboard
+      await bot.send_message(message.chat.id, "Pastdagi tugmani bosing:", reply_markup=keyboard)
+      
+    @bot.message_handler(commands=["additional"])
+    async def additional_command(message: Message):
+    # Create inline keyboard
+      keyboard = InlineKeyboardMarkup()
+      keyboard.add(InlineKeyboardButton("Websayt", url=site_url))
+      keyboard.add(InlineKeyboardButton("Telegram stories", url=tgchannel_url))
+    
+    # Send message with inline keyboard
+      await bot.send_message(message.chat.id, "Qo'shimcha havolalar:", reply_markup=keyboard)
+      
+    @bot.message_handler(commands=["profile"])
+    async def profile_command(message: Message):
+    # Retrieve user's ID and name
+     user_id = message.from_user.id
+     user_name = message.from_user.first_name
+    
+    # Compose profile message
+     profile_message = f"👤 *Hisobingiz*\n\nID: `{user_id}`\nIsm: {user_name}"
+    
+    # Send profile message
+     await bot.send_message(message.chat.id, profile_message, parse_mode="MarkdownV2")
+
+
 
     @bot.message_handler(commands=["gemini"])
     async def gemini_handler(message: Message):
@@ -231,38 +269,6 @@ async def main():
         except Exception:
             traceback.print_exc()
             await bot.edit_message_text(error_info, chat_id=sent_message.chat.id, message_id=sent_message.message_id)
-
-
-    
-    
-
-
-
-    
-    @bot.message_handler(commands=["additional"])
-    async def additional_command(message: Message):
-   
-    
-    # Compose profile message
-    profile_message = f"👤Admin : @itstimebeyond \nTelegram Stories: @storiescreation \nWebsayt: https://asicloud.uz"
-    
-    # Send profile message
-    await bot.send_message(message.chat.id, profile_message, parse_mode="MarkdownV2")
-
-    @bot.message_handler(commands=["profile"])
-    async def profile_command(message: Message):
-    # Retrieve user's ID and name
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
-    
-    # Compose profile message
-    profile_message = f"👤 *Hisobingiz*\n\nID: `{user_id}`\nIsmingiz: {user_name}"
-    
-    # Send profile message
-    await bot.send_message(message.chat.id, profile_message, parse_mode="MarkdownV2")
-
-
-
 
     @bot.message_handler(commands=["clear"])
     async def gemini_handler(message: Message):
