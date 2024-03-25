@@ -169,8 +169,8 @@ async def async_generate_content(model, contents):
 async def main():
     # Init args
     parser = argparse.ArgumentParser()
-    parser.add_argument("tg_token", help="6943810773:AAEIQHJC_lYOXPzM4I1MgQYKFut3WvxP-Xo")
-    parser.add_argument("GOOGLE_GEMINI_KEY", help="AIzaSyA0XLtj9Eyn2ddIeqdunoFeCeFI4Nd7uuU")
+    parser.add_argument("tg_token", help="TG API")
+    parser.add_argument("GOOGLE_GEMINI_KEY", help="Geimini api")
     options = parser.parse_args()
     print("Arg parse done.")
     gemini_player_dict = {}
