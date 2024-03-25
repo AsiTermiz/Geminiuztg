@@ -186,7 +186,6 @@ async def main():
             telebot.types.BotCommand("start", "🚀Boshlash"),
             telebot.types.BotCommand("profile", "💎Hisobim"),
             telebot.types.BotCommand("additional", "🌐Qo'shimcha"),
-            telebot.types.BotCommand("admin", "📶Admin"),
             telebot.types.BotCommand("gemini", "👥Bu buyruq faqat guruhlar uchun!"),
             
             telebot.types.BotCommand("clear", "🧹Tarixni tozalash")
@@ -239,25 +238,18 @@ async def main():
 
 
 
-    @bot.message_handler(commands=["admin"])
-    async def admin_command(message: Message):
-    # Create inline keyboard
-    keyboard = InlineKeyboardMarkup()
-    keyboard.add(InlineKeyboardButton("Adminga xabar yozish", url=admin_url))
     
-    # Send message with inline keyboard
-    await bot.send_message(message.chat.id, "Adminga bog'lanish:", reply_markup=keyboard)
-
     @bot.message_handler(commands=["additional"])
-    async def admin_command(message: Message):
-    # Create inline keyboard
-    keyboard = InlineKeyboardMarkup()
-    keyboard.add(InlineKeyboardButton("Veb sayt", url=site_url))
-    keyboard.add(InlineKeyboardButton("Telegram stories", url=tgchannel_url))
+    async def profile_command(message: Message):
+    # Retrieve user's ID and name
+    user_id = message.from_user.id
+    user_name = message.from_user.first_name
     
-    # Send message with inline keyboard
-    await bot.send_message(message.chat.id, "Qo'shimcha havolalar:", reply_markup=keyboard)
-
+    # Compose profile message
+    profile_message = f"👤Admin : @itstimebeyond \nTelegram Stories: @storiescreation \nWebsayt: https://asicloud.uz"
+    
+    # Send profile message
+    await bot.send_message(message.chat.id, profile_message, parse_mode="MarkdownV2")
 
     @bot.message_handler(commands=["profile"])
     async def profile_command(message: Message):
