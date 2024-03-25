@@ -187,7 +187,6 @@ async def main():
             telebot.types.BotCommand("additional", "🌐Qo'shimcha"),
             telebot.types.BotCommand("admin", "📶Admin"),
             telebot.types.BotCommand("gemini", "👥Bu buyruq faqat guruhlar uchun!"),
-            telebot.types.BotCommand("help", "🆘Yordam"),
             telebot.types.BotCommand("clear", "🧹Tarixni tozalash")
         ],
     )
@@ -201,10 +200,7 @@ async def main():
         except IndexError:
             await bot.reply_to(message, error_info)
             
-    @bot.message_handler(commands=["help"])
-    async def help_command(message: Message):
-     help_text = " *Gemini qo'llanma* ℹ️\n• /start -Boshlash.\n• /profile - Hisobingiz.\n• /additional - Qo'shimcha.\n• /admin - Adminga bog'lanish.\n• /gemini - Gemini bilan har joyda ishlang.\n• /help - Yordam.\n• /clear - Tarixni tozalash."
-     await bot.reply_to(message, help_text, parse_mode="MarkdownV2")
+   
      
     @bot.message_handler(commands=["admin"])
     async def admin_command(message: Message):
