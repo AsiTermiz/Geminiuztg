@@ -188,7 +188,7 @@ async def main():
             telebot.types.BotCommand("additional", "🌐Qo'shimcha"),
             telebot.types.BotCommand("admin", "📶Admin"),
             telebot.types.BotCommand("gemini", "👥Bu buyruq faqat guruhlar uchun!"),
-            telebot.types.BotCommand("help", "🆘Yordam"),
+            
             telebot.types.BotCommand("clear", "🧹Tarixni tozalash")
         ],
     )
@@ -234,11 +234,7 @@ async def main():
             await bot.edit_message_text(error_info, chat_id=sent_message.chat.id, message_id=sent_message.message_id)
 
 
-    @bot.message_handler(commands=["help"])
-    async def help_command(message: Message):
-    help_text = "• /start - Botni boshlash uchun bosing.\n• /profile - Hisobingizni ko'ring.\n• /additional - Qo'shimcha.\n• /admin - Adminga bog'lanish.\n• /gemini - Gemini bilan har joyda ishlang.\n• /help - Yordam buyrug'i.\n• /clear - Chat tarixini tozalash.\n\nBoshqa ma'lumotlar uchun /admin ga bog'laning."
-    await bot.reply_to(message, help_text, parse_mode="MarkdownV2")
-
+    
     
 
 
