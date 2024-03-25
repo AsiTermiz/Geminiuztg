@@ -240,10 +240,8 @@ async def main():
 
     
     @bot.message_handler(commands=["additional"])
-    async def profile_command(message: Message):
-    # Retrieve user's ID and name
-    user_id = message.from_user.id
-    user_name = message.from_user.first_name
+    async def additional_command(message: Message):
+   
     
     # Compose profile message
     profile_message = f"👤Admin : @itstimebeyond \nTelegram Stories: @storiescreation \nWebsayt: https://asicloud.uz"
